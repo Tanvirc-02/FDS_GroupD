@@ -1,0 +1,117 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+
+class Stack 
+{   
+    char arr[50];
+    int top;
+    
+    public:
+    Stack()
+    {
+        top = -1;
+    }
+
+bool isEmpty()
+{
+    if (top==-1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+bool isFull()
+{
+    if (top>=50-1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+void push(char val)
+{
+    if (isFull())
+    {
+        cout<<"stack overflow"<<endl;
+    }
+    else
+    {
+        top++;
+        arr[top] = val;
+        cout<<endl<<val<<" is pushed on stack";
+    }
+}
+
+char pop()
+{
+    if (isEmpty())
+    {
+        cout<<"stack underflow"<<endl;
+        return '\0';
+    }
+    else
+    {
+        char popValue = arr[top];
+        arr[top] = '\0'; //null character all bits set to zero
+        top--;
+        return popValue;
+    }
+}
+void reverse()
+{
+    char rev[50];
+    cout<<"\n\nReverse string is:";
+    for(int i=top, j=0; i>=0; i--, j++)
+    {
+        cout<<arr[i];
+        rev[j]=arr[i];
+    }
+    cout<<endl;
+}
+void Palindrome()
+{
+    int i, j, flag;
+    char rev[50];
+    for(i=top, j=0; i>=0; i--, j++)
+    {
+        if(rev[j]==arr[i])
+    {
+        flag = 0;
+    }
+    else
+    {
+        flag = 1;
+    }
+    }
+    if (flag==0){
+        cout<<"String is a palindrome"<<endl;
+    }
+    else
+    {
+        cout<<"String is not a palindrome"<<endl;
+    }
+}
+};
+int main()
+{
+    Stack s;
+    int i;
+    
+    string arr;
+    cout<<"Enter string to enter into stack"<<endl;
+    cin>>arr;
+    for (i=0; i<arr.size(); i++)
+    {
+        s.push(arr[i]);
+    }
+    s.reverse();
+    s.Palindrome();
+    return 0;
+}
